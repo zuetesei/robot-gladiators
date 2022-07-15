@@ -13,6 +13,7 @@ var playerInfo = {
         this.health = 100;
         this.money = 10; 
         this.attack = 10;
+        console.log (this.name)
     },
     refillHealth: function() {
         if (this.money >= 7) {
@@ -72,7 +73,7 @@ var fight = function(enemy) {
             }
         }
         //remove enemy health
-        var damage = randomNumber (playerInfo.attack - 3); playerInfo.attack;
+        var damage = randomNumber (3, playerInfo.attack); 
         enemy.health = Math.max(0, enemy.health - damage);
         console.log (
             playerInfo.name + ' attacked ' + enemy.name + ' . ' + enemy.name + ' now has ' + enemy.health + ' health remaining.'
@@ -92,7 +93,7 @@ var fight = function(enemy) {
         }
 
         //remove player's health by - amount set in enemy.attack
-        var damage = randomNumber (enemy.attack - 3); enemy.attack;
+        var damage = randomNumber (3, enemy.attack);
         playerInfo.health = Math.max (0, playerInfo.health - damage);
         console.log (
         enemy.name + ' attacked ' + playerInfo.name + '. ' + playerInfo.name + ' now has ' + playerInfo.health + ' health remaining.'
@@ -121,6 +122,7 @@ var startGame = function( ) {
         if (playerInfo.health > 0) {
         //let player know what round they are in, remember that arrays start at 0 so it needs to have 1 added to it 
         window.alert ("Welcome to Robot Gladiators! Round " + (i + 1));
+        debugger; 
 
         //pick new enemy to fight based on the index of the enemy.names array
         var pickedEnemyObj = enemyInfo[i];
@@ -129,7 +131,6 @@ var startGame = function( ) {
         pickedEnemyObj.health = randomNumber(40,60);
 
         //use debugger to pause script from running and check what's going on at that moment in the code 
-        // debugger; 
 
         //pass the pickedenemy.name variable's value into the fight function, where it will assume the value of the enemy.name parameter
         fight(pickedEnemyObj);
